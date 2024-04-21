@@ -1,0 +1,8 @@
+{
+  "name": "KbOnOff",
+  "description": "Enable or disable keyboard from the system tray",
+  "uuid": "kbonoff@thenutbreaker.xyz",
+  "shell-version": [
+    "42"
+  ]
+}
