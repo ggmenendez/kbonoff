@@ -26,7 +26,6 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Main = imports.ui.main;
 const PanelMenu = imports.ui.panelMenu;
 const PopupMenu = imports.ui.popupMenu;
-
 const _ = ExtensionUtils.gettext;
 
 let PID = null;
@@ -37,17 +36,18 @@ const Indicator = GObject.registerClass(
       super._init(0.0, _('My Shiny Indicator'));
 
       this.add_child(new St.Icon({
-        icon_name: 'face-smile-symbolic',
+        icon_name:  'input-keyboard-symbolic',
         style_class: 'system-status-icon',
       }));
 
-      let item = new PopupMenu.PopupMenuItem(_('Toggle keyboard'));
+      let item = new PopupMenu.PopupMenuItem(_('Disable keyboard'));
       item.connect('activate', () => {
         if (PID) {
           GLib.spawn_close_pid(PID);
           GLib.spawn_command_line_async(`pkexec kill ${PID}`);
           PID = null;
           Main.notify('Keyboard enabled');
+          item.label.text = _('Disable keyboard')
           return;
         }
 
@@ -63,7 +63,7 @@ const Indicator = GObject.registerClass(
           Main.notify("There was a problem disabling keyboard");
         } else if (pid) {
           PID = pid;
-          console.log({ pid })
+          item.label.text = _('Enable keyboard')
           Main.notify(`Keyboard disabled, pid: ${PID}`);
         }
       });
