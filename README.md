@@ -3,6 +3,17 @@ KB on/off
 
 This plugin adds an icon to the gnome bar with a button to enable/disable the keyboard while using Wayland.
 
+## Prerequisites
+This plugin uses `evtest` to grab all the events from the keyboard and stops their propagation. If you don't have it, just install it with:
+
+### ubuntu / debian flavoured
+```bash
+sudo apt install evtest
+```
+
+### other distros
+TODO!
+
 ## Install
 To install this plugin go to `$HOME/.local/share/gnome-shell/extensions/` and clone this repo:
 
