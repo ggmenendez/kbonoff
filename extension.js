@@ -45,7 +45,7 @@ const Indicator = GObject.registerClass(
       item.connect('activate', () => {
         if (PID) {
           GLib.spawn_close_pid(PID);
-          GLib.spawn_command_line_sync(`pkexec kill ${PID}`);
+          GLib.spawn_command_line_async(`pkexec kill ${PID}`);
           PID = null;
           Main.notify('Keyboard enabled');
           return;
